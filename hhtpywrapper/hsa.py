@@ -19,6 +19,11 @@ class HSA():
             iamp = fa[1].T
         self.ifreq = ifreq
         self.iamp = iamp
+        
+    def hsa_mhs(self, mhs_flag=1, mhs_fres=0.25, mhs_fs=20):
+        mhs_res= self.mlab.run_func('mhs',self.iamp, self.ifreq, mhs_flag, mhs_fres, mhs_fs,nargout=2)
+        yamp,xfreq= mhs_res['result']
+        return yamp,xfreq
 
     def plot_hs(self, time, trange, frange, tres, fres, hsize, sigma,
                 tunit='s', funit='Hz', colorbar = 'energy', savefig_name=''):
